@@ -31,12 +31,10 @@ export default function AppRoutes() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Público */}
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<RedirecionarHome />} />
         <Route path="/carrinho" element={<Carrinho />} />
 
-        {/* Cliente autenticado */}
         <Route
           path="/historico"
           element={
@@ -46,7 +44,6 @@ export default function AppRoutes() {
           }
         />
 
-        {/* Administrador */}
         <Route
           path="/admin"
           element={
@@ -56,7 +53,6 @@ export default function AppRoutes() {
           }
         />
 
-        {/* Entregador */}
         <Route
           path="/entregador"
           element={
@@ -66,7 +62,6 @@ export default function AppRoutes() {
           }
         />
 
-        {/* Fallback */}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </BrowserRouter>
