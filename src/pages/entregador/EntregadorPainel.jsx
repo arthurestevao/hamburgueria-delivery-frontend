@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+import { AuthContext } from '../../context/AuthContext';
 import { useEffect, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../../api/axios';
@@ -37,28 +39,16 @@ export default function EntregadorPainel() {
     buscarPedidos();
   }, []);
 
-  /**
-   * Busca pedidos com status PRONTO (prontos para sair para entrega)
-   * e SAIU_PARA_ENTREGA (em trânsito, aguardando confirmação).
-   * A API retorna todos os pedidos do usuário; aqui filtramos no frontend
-   * por não ter um endpoint de listagem geral de pedidos por status ainda.
-   */
   async function buscarPedidos() {
     setCarregando(true);
     try {
-      // Usa o id do usuário vinculado ao entregador para buscar seus pedidos em andamento.
-      // Em projetos futuros, um endpoint GET /entregas/pendentes seria mais correto.
-      const res = await api.get(`/pedidos/usuario/${usuario.id}`);
-      const ativos = res.data.filter(p =>
-        ['PRONTO', 'SAIU_PARA_ENTREGA'].includes(p.statusPedido)
-      );
-      setPedidosProximos(ativos);
+        const res = await api.get('/pedidos/status/PRONTO');
+        setPedidosProximos(res.data);
     } catch {
-      // Silencioso; sem pedidos para mostrar
     } finally {
-      setCarregando(false);
+        setCarregando(false);
     }
-  }
+}
 
   async function sairParaEntrega(pedidoId) {
     setAtualizando(pedidoId);

@@ -176,7 +176,7 @@ export default function AdminDashboard() {
     }
 
     const abas = [
-        { key: 'pedidos', label: '📋 Produtos' },
+        { key: 'produtos', label: '📋 Produtos' },
         { key: 'cupons', label: '🏷 Cupons' },
         { key: 'entregadores', label: '🛵 Entregadores' },
         { key: 'clientes', label: '👥 Clientes' },
